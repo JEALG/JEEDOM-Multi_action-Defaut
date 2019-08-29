@@ -1,0 +1,58 @@
+<div style="width:90px;min-height:62px;" class="cmd tooltips cmd-widget cursor #history#" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
+  	<!-- Info Widget
+		Basé sur les widget de 	: JAG
+		Mise à jour 			: JAG 20190516 : Simplification code
+	-->
+    <div class="row">
+        <center>
+            <div class="title #hide_name#">
+                <div  class="cmdName" style="#hideCmdName#">#valueName#</div>
+            </div>
+            <div class="content-sm ">
+                <span class="iconCmd#id#" title="#name#"></span>
+            </div>
+        </center>
+    </div>
+    <script>
+        jeedom.cmd.update['#id#'] = function(_options){
+            // Paramètrage du logo
+                // Valeur pour ON ou 1
+      			   var srcImglogoON        = ('#logoON#'!='#'+'logoON#') ? "#logoON#" : "day";
+      			   var srcImglogoON_T      = ('#logoON_type#'!='#'+'logoON_type#') ? "#logoON_type#" : "png";
+                // Valeur pour OFF ou 0
+                    var srcImglogoOFF      = ('#logoOFF#'!='#'+'logoOFF#') ? "#logoOFF#" : "night";
+                    var srcImglogoOFF_T    = ('#logoOFF_type#'!='#'+'logoOFF_type#') ? "#logoOFF_type#" : "png";
+            // Paramètre "sizeh" & "sizew"
+                    var srcImgHeight	   = is_numeric('#sizeh#') ? parseFloat('#sizeh#'):80;
+                    var srcImgWidth 	   = is_numeric('#sizew#') ? parseFloat('#sizew#'):80;
+                    var srcImgSize 		   = 'height='+srcImgHeight+'px width='+srcImgWidth+'px';
+            // Paramétrage des images
+                var srcFolder           = ('#dossier#'!='#'+'dossier#') ? "#dossier#" : "Divers";
+                if (srcFolder == 'NULL') {
+                    var srcImgURL           = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/";
+                } else {
+                    var srcImgURL           = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/"+srcFolder+'/';
+                };  
+            //Update
+                if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
+                    if (jeedom.cmd.normalizeName('#name#') == 'on') {
+                        $('.cmd[data-cmd_id=#id#]').hide();
+                    }else{
+                        $('.cmd[data-cmd_id=#id#]').show();
+                        $('.cmd[data-cmd_id=#id#] .iconCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoON +'.'+ srcImglogoON_T+'" '+srcImgSize+'>');
+                    }
+                } else {
+                    if (jeedom.cmd.normalizeName('#name#') == 'off') {
+                        $('.cmd[data-cmd_id=#id#]').hide();
+                    }else{
+                        $('.cmd[data-cmd_id=#id#]').show();
+                        $('.cmd[data-cmd_id=#id#] .iconCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoOFF +'.'+ srcImglogoOFF_T+'" '+srcImgSize+'>');
+                    }
+                }
+        }
+        jeedom.cmd.update['#id#']({display_value:'#state#'});
+        $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').off().on('click', function () {
+            jeedom.cmd.execute({id: '#id#'});
+        });
+    </script>
+</div>
