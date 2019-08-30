@@ -29,7 +29,7 @@
                         var srcImgpourcent     = ('#Pourcentage#'!='#'+'Pourcentage#') ? "#Pourcentage#" : "NO";
                         if (srcImgpourcent  == "NO") {
                             var srcImgSize 		   = 'height='+srcImgHeight+'px width='+srcImgWidth+'px';
-                        } else {
+                        } else if (srcImgpourcent  == "YES") {
                             var srcImgSize 		   = 'height='+srcImgHeight+'% width='+srcImgWidth+'%';
                         }
             // Paramétrage des images
