@@ -1,7 +1,7 @@
 <div style="width:90px;min-height:62px;" class="cmd tooltips cmd-widget cursor #history#" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   	<!-- Info Widget
 		Basé sur les widget de 	: JAG
-		Mise à jour 			: JAG 20190907 : Normalisation nom images => Merci à mich0111
+		Mise à jour 			: JAG 20190913 : Posibilité d'utiliser la normalisation des images
 	-->
     <div class="row">
         <center>
@@ -16,28 +16,42 @@
     <script>
         jeedom.cmd.update['#id#'] = function(_options){
             // Paramètrage du logo
-                // Valeur pour ON ou 1
-                            var srcImglogoON        = ('#logoON#'!='#'+'logoON#') ? "#logoON#" : "di_day";
-                            var srcImglogoON_T      = ('#logoON_type#'!='#'+'logoON_type#') ? "#logoON_type#" : "png";
-                // Valeur pour OFF ou 0
-                            var srcImglogoOFF       = ('#logoOFF#'!='#'+'logoOFF#') ? "#logoOFF#" : "di_night";
-                            var srcImglogoOFF_T     = ('#logoOFF_type#'!='#'+'logoOFF_type#') ? "#logoOFF_type#" : "png";
+                // Valeur du logo
+                            var srcImglogo	    = ('#logo#'!='#'+'logo#') ? "#logo#" : "";
+                            var srcImglogo_T 	= ('#logo_type#'!='#'+'logo_type#') ? "#logo_type#" : "png";
+                // Paramétrage des images
+                    if (srcImglogo == "") {
+                        // Variable Image pour Valeur : ON ou 1
+                            var srcImglogoON    = ('#logoON#'!='#'+'logoON#') ? "#logoON#" : "di_day";
+                            var srcImglogoON_T  = ('#logoON_type#'!='#'+'logoON_type#') ? "#logoON_type#" : "png";
+                        // Variable Image pour Valeur : OFF ou 0
+                            var srcImglogoOFF   = ('#logoOFF#'!='#'+'logoOFF#') ? "#logoOFF#" : "di_night";
+                            var srcImglogoOFF_T = ('#logoOFF_type#'!='#'+'logoOFF_type#') ? "#logoOFF_type#" : "png";
+                    } else {
+                        // Variable Image pour Valeur : ON ou 1
+                            var srcImglogoON    = srcImglogo + '_on';
+                            var srcImglogoON_T  = srcImglogo_T;
+                        // Variable Image pour Valeur : OFF ou 0
+                            var srcImglogoOFF   = srcImglogo + '_off';
+                            var srcImglogoOFF_T = srcImglogo_T;
+                    };
+            
             // Paramètre "sizeh" & "sizew"
-                            var srcImgHeight        = is_numeric('#sizeh#') ? parseFloat('#sizeh#'):80;
-                            var srcImgWidth         = is_numeric('#sizew#') ? parseFloat('#sizew#'):80;
+                            var srcImgHeight    = is_numeric('#sizeh#') ? parseFloat('#sizeh#'):80;
+                            var srcImgWidth     = is_numeric('#sizew#') ? parseFloat('#sizew#'):80;
                     // Type de taille
-                            var srcImgpourcent      = ('#Pourcentage#'!='#'+'Pourcentage#') ? "#Pourcentage#" : "NO";
+                            var srcImgpourcent  = ('#Pourcentage#'!='#'+'Pourcentage#') ? "#Pourcentage#" : "NO";
                         if (srcImgpourcent  == "NO") {
-                            var srcImgSize          = 'height='+srcImgHeight+'px width='+srcImgWidth+'px';
+                            var srcImgSize      = 'height='+srcImgHeight+'px width='+srcImgWidth+'px';
                         } else if (srcImgpourcent  == "YES") {
-                            var srcImgSize          = 'height='+srcImgHeight+'% width='+srcImgWidth+'%';
+                            var srcImgSize      = 'height='+srcImgHeight+'% width='+srcImgWidth+'%';
                         }
             // Paramétrage des images
-                            var srcFolder           = ('#dossier#'!='#'+'dossier#') ? "#dossier#" : "divers";
+                            var srcFolder       = ('#dossier#'!='#'+'dossier#') ? "#dossier#" : "divers";
                 if (srcFolder == 'NULL') {
-                            var srcImgURL           = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/";
+                            var srcImgURL       = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/";
                 } else {
-                            var srcImgURL           = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/"+srcFolder+'/';
+                            var srcImgURL       = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/"+srcFolder+'/';
                 };  
             //Update
                 if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
