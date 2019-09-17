@@ -1,7 +1,7 @@
 <div style="min-width:90px;min-height:62px;" class="cmd tooltips cmd-widget cursor #history#" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   	<!-- Info Widget
 		Basé sur les widget de 	: 
-		Mise à jour 			: JAG 20190914 : Correction taille widget
+		Mise à jour 			: JAG 20190917 : Mise à uniquement pour core v4
 	-->
     <div class="row">
         <center>
@@ -49,9 +49,9 @@
             // Paramétrage des images
                             var srcFolder       = ('#dossier#'!='#'+'dossier#') ? "#dossier#" : "divers";
                 if (srcFolder == 'NULL') {
-                            var srcImgURL       = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/";
+                            var srcImgURL       = "core/template/dashboard/cmd.action.other.Multi-action-Defaut/";
                 } else {
-                            var srcImgURL       = "plugins/widget/core/template/dashboard/cmd.action.other.Multi-action-Defaut/"+srcFolder+'/';
+                            var srcImgURL       = "core/template/dashboard/cmd.action.other.Multi-action-Defaut/"+srcFolder+'/';
                 };  
             //Update
                 if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
