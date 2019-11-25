@@ -8,10 +8,10 @@
             <div  class="cmdName">#valueName#</div>
         </div>
         <div class="content-sm ">
-            <span class="imgCmd"></span>
+            <span class="imgCmd imgCmd#id#"></span>
         </div>
         <div class="value">
-            <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
+            <span class="timeCmd label label-default timeCmd#id#" data-type="info" data-cmd_id="#value_id#"></span>
         </div>
     </center>
     <script>
@@ -63,14 +63,14 @@
                         $('.cmd[data-cmd_id=#id#]').hide();
                     }else{
                         $('.cmd[data-cmd_id=#id#]').show();
-                        $('.cmd[data-cmd_id=#id#] .iconCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoON +'.'+ srcImglogoON_T+'" '+srcImgSize+'>');
+                        $('.cmd[data-cmd_id=#id#] .imgCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoON +'.'+ srcImglogoON_T+'" '+srcImgSize+'>');
                     }
                 } else {
                     if (jeedom.cmd.normalizeName('#name#') == 'off') {
                         $('.cmd[data-cmd_id=#id#]').hide();
                     }else{
                         $('.cmd[data-cmd_id=#id#]').show();
-                        $('.cmd[data-cmd_id=#id#] .iconCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoOFF +'.'+ srcImglogoOFF_T+'" '+srcImgSize+'>');
+                        $('.cmd[data-cmd_id=#id#] .imgCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoOFF +'.'+ srcImglogoOFF_T+'" '+srcImgSize+'>');
                     }
                 }
           
@@ -92,11 +92,9 @@
                             var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes()+":"+(srcdate.getSeconds()<10?'0':'')+srcdate.getSeconds()+"";
                             $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srctime);
                         };
-
-        }
-
-        jeedom.cmd.update['#id#']({display_value:'#state#', valueDate: '#valueDate#'});
-        $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').off().on('click', function () {
+        }        
+        jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
+        $('.cmd[data-cmd_uid=#uid#] .imgCmd#id#').off().on('click', function () {
             jeedom.cmd.execute({id: '#id#'});
         });
     </script>
