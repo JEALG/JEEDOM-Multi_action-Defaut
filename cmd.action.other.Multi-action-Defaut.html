@@ -1,7 +1,7 @@
 <div style="min-width:90px;min-height:62px;" class="cmd tooltips cmd-widget cursor #history#" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   	<!-- Info Widget
 		Basé sur les widget de 	: 
-		Mise à jour 			: JAG 20190918 : Migration uniquement pour core V4
+		Mise à jour 			: JAG 20191125 : Ajout Temps depuis derniere action
 	-->
     <div class="row">
         <center>
@@ -75,6 +75,23 @@
                         $('.cmd[data-cmd_id=#id#] .iconCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoOFF +'.'+ srcImglogoOFF_T+'" '+srcImgSize+'>');
                     }
                 }
+
+           		// Derniere durée changement dernier etat
+                 //Merci @Salvialf pour le code
+                 if (srcImglogoTime == "date") {
+                   	$('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
+                     var srcdate     = new Date(_options.valueDate);
+                     var srcformat   = $.datepicker.formatDate('D dd/mm', srcdate);
+                     var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes();
+                     $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srcformat+' '+srctime);
+                 } else if (srcImglogoTime == "heure") {
+                   	$('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
+                     var srcdate     = new Date(_options.valueDate);
+                     var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes()+":"+(srcdate.getSeconds()<10?'0':'')+srcdate.getSeconds()+"";
+                     $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srctime);
+                 };
+            
+            
 		// Derniere durée changement dernier etat
 			//Merci @Salvialf pour le code
 			if (srcImglogoTime == "duree") {
