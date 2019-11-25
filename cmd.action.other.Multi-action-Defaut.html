@@ -1,25 +1,19 @@
 <div style="min-width:90px;min-height:62px;" class="cmd tooltips cmd-widget cursor #history#" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   	<!-- Info Widget
 		Basé sur les widget de 	: 
-		Mise à jour 			: JAG 20191125 : Ajout Temps depuis derniere action
+		Mise à jour 			: JAG 20191125 : Ajout Temps depuis dernière action
 	-->
-    <div class>
-        <center>
-            <div class="title #hide_name#">
-                <div  class="cmdName cmdName#id#" style="#hideCmdName#">#valueName#</div>
-            </div>
-            <div class="content-sm ">
-                <span class="iconCmd iconCmd#id#" title="#name#"></span>
-            </div>
-            <!-- Durée -->
-            <div class="value">
-                <span style="min-width:100px" class="timeCmd#id# timeCmd label label-default value"></span>
-            </div>
-            <div class="value">
-                <span style="min-width:100px" class="timeCmd#id# timeCmd label label-default value"></span>
-            </div>
-        </center>
-    </div>
+    <center>
+        <div class="title #hide_name#">
+            <div  class="cmdName">#valueName#</div>
+        </div>
+        <div class="content-sm ">
+            <span class="imgCmd"></span>
+        </div>
+        <div class="value">
+            <span class="timeCmd label label-default #value_history#" data-type="info" data-cmd_id="#value_id#"></span>
+        </div>
+    </center>
     <script>
         jeedom.cmd.update['#id#'] = function(_options){
             // Paramètrage du logo
@@ -81,28 +75,26 @@
                 }
           
           		// Affichage durée changement dernier etat
-                var srcImglogoTime              = '#logoTime#';
-          		// Derniere durée changement dernier etat
-                //Merci @Salvialf pour le code
-                if (srcImglogoTime == "duree") {
-                  	$('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
-                    jeedom.cmd.displayDuration(_options.valueDate, $('.cmd[data-cmd_id=#id#] .timeCmd#id#'));
-                } else if (srcImglogoTime == "date") {
-                  	$('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
-                    var srcdate     = new Date(_options.valueDate);
-                    var srcformat   = $.datepicker.formatDate('D dd/mm', srcdate);
-                    var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes();
-                    $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srcformat+' '+srctime);
-                } else if (srcImglogoTime == "heure") {
-                  	$('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
-                    var srcdate     = new Date(_options.valueDate);
-                    var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes()+":"+(srcdate.getSeconds()<10?'0':'')+srcdate.getSeconds()+"";
-                    $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srctime);
-                };
+          		    // Derniere durée changement dernier etat
+                    //Merci @Salvialf pour le code
+                        if (srcImglogoTime == "duree") {
+                            $('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
+                            jeedom.cmd.displayDuration(_options.valueDate, $('.cmd[data-cmd_id=#id#] .timeCmd#id#'));
+                        } else if (srcImglogoTime == "date") {
+                            $('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
+                            var srcdate     = new Date(_options.valueDate);
+                            var srcformat   = $.datepicker.formatDate('D dd/mm', srcdate);
+                            var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes();
+                            $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srcformat+' '+srctime);
+                        } else if (srcImglogoTime == "heure") {
+                            $('.cmd[data-cmd_id=#id#] .timeCmd#id#').show();
+                            var srcdate     = new Date(_options.valueDate);
+                            var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes()+":"+(srcdate.getSeconds()<10?'0':'')+srcdate.getSeconds()+"";
+                            $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srctime);
+                        };
 
         }
 
-      
         jeedom.cmd.update['#id#']({display_value:'#state#', valueDate: '#valueDate#'});
         $('.cmd[data-cmd_uid=#uid#] .iconCmd#id#').off().on('click', function () {
             jeedom.cmd.execute({id: '#id#'});
