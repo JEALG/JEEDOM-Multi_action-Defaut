@@ -1,7 +1,7 @@
 <div style="min-width:90px;min-height:62px;" class="cmd tooltips cmd-widget cursor #history#" data-type="action" data-subtype="other" data-cmd_id="#id#" data-cmd_uid="#uid#" data-version="#version#" data-eqLogic_id="#eqLogic_id#">
   	<!-- Info Widget
 		Basé sur les widget de 	: 
-		Mise à jour 			: JAG 20190918 : Migration uniquement pour core V4
+		Mise à jour 			: JAG 20191125 : Ajout Temps depuis derniere action
 	-->
     <div class>
         <center>
@@ -12,6 +12,9 @@
                 <span class="iconCmd iconCmd#id#" title="#name#"></span>
             </div>
             <!-- Durée -->
+            <div class="value">
+                <span style="min-width:100px" class="timeCmd#id# timeCmd label label-default value"></span>
+            </div>
             <div class="value">
                 <span style="min-width:100px" class="timeCmd#id# timeCmd label label-default value"></span>
             </div>
@@ -57,6 +60,9 @@
                 } else {
                             var srcImgURL       = "data/customTemplates/dashboard/cmd.action.other.Multi-action-Defaut/"+srcFolder+'/';
                 };  
+            
+            // Affichage durée changement dernier etat
+                            var srcImglogoTime  = '#logoTime#';
             //Update
                 if (_options.display_value == '1' || _options.display_value == 1 || _options.display_value == '99' || _options.display_value == 99 || _options.display_value == 'on') {
                     if (jeedom.cmd.normalizeName('#name#') == 'on') {
@@ -73,7 +79,6 @@
                         $('.cmd[data-cmd_id=#id#] .iconCmd#id#').empty().append('<img src="'+srcImgURL +srcImglogoOFF +'.'+ srcImglogoOFF_T+'" '+srcImgSize+'>');
                     }
                 }
-
           
           		// Affichage durée changement dernier etat
                 var srcImglogoTime              = '#logoTime#';
@@ -94,7 +99,7 @@
                     var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes()+":"+(srcdate.getSeconds()<10?'0':'')+srcdate.getSeconds()+"";
                     $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srctime);
                 };
-            
+
         }
 
       
