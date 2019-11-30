@@ -91,7 +91,7 @@
                             var srcdate     = new Date(_options.valueDate);
                             var srctime     = "à "+srcdate.getHours()+":"+(srcdate.getMinutes()<10?'0':'')+srcdate.getMinutes()+":"+(srcdate.getSeconds()<10?'0':'')+srcdate.getSeconds()+"";
                             $('.cmd[data-cmd_id=#id#] .timeCmd#id#').empty().html(srctime);
-                        };
+                        };  
         }        
         jeedom.cmd.update['#id#']({display_value:'#state#',valueDate:'#valueDate#',collectDate:'#collectDate#',alertLevel:'#alertLevel#'});
         $('.cmd[data-cmd_uid=#uid#] .imgCmd#id#').off().on('click', function () {
